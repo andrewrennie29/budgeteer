@@ -1,0 +1,32 @@
+<%= form_for(budget_period) do |f| %>
+  <% if budget_period.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(budget_period.errors.count, "error") %> prohibited this budget_period from being saved:</h2>
+
+      <ul>
+      <% budget_period.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :period %>
+    <%= f.text_field :period %>
+  </div>
+
+  <div class="field">
+    <%= f.label :days %>
+    <%= f.number_field :days %>
+  </div>
+
+  <div class="field">
+    <%= f.label :frequency %>
+    <%= f.number_field :frequency %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

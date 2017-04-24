@@ -1,0 +1,2 @@
+class BudgetPeriod < ApplicationRecord
+end

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Disposition:</strong>
+  <%= @budget_disposition.disposition %>
+</p>
+
+<p>
+  <strong>Multiplier:</strong>
+  <%= @budget_disposition.multiplier %>
+</p>
+
+<%= link_to 'Edit', edit_budget_disposition_path(@budget_disposition) %> |
+<%= link_to 'Back', budget_dispositions_path %>

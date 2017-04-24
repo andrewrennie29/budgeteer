@@ -1,0 +1,10 @@
+<% @expense_log.each_slice(5) do |categories| %>
+	<ul><% categories.each do |category| %>
+			<%= link_to new_expense_path(category: category.id), :title => category.category, :remote => true do %>
+			<span class="fa-stack fa-1x">
+				<i class="fa fa-square-o fa-stack-2x"></i>
+				<%= ('<i class="fa fa-' + category.icon.to_s + ' fa-stack-1x"></i>').html_safe %>
+			</span>
+			<% end %>
+	<% end %></ul>
+<% end %>

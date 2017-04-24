@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Budgets</h1>
+
+<%= render 'budgets/form' %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Budget Type</th>
+      <th>Period</th>
+      <th>Rollover</th>
+      <th>Value</th>
+      <th>Weekly Value</th>
+      <th>Burndown</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @budgets.each do |budget| %>
+      <tr>
+        <th scope="row"><%= link_to budget.name, budget %></th>
+        <td><%= budget.budget_type.budget_type %></td>
+        <td><%= budget.budget_period.period %></td>
+        <td><%= budget.rollover %></td>
+        <td><%= number_to_currency(budget.value, precision: 2, unit: "£") %></td>
+        <td><%= number_to_currency(budget.weekly_value, precision: 2, unit: "£") %></td>
+        <td><% @burndown = @burndown + budget.weekly_value * budget.budget_type.budget_disposition.multiplier %> 
+            <%= number_to_currency(@burndown, precision: 2, unit: "£") %>
+        <td><%= link_to 'Edit', edit_budget_path(budget) %></td>
+        <td><%= link_to 'Destroy', budget, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Budget', new_budget_path %>

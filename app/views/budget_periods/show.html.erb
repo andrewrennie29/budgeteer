@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Period:</strong>
+  <%= @budget_period.period %>
+</p>
+
+<p>
+  <strong>Days:</strong>
+  <%= @budget_period.days %>
+</p>
+
+<p>
+  <strong>Frequency:</strong>
+  <%= @budget_period.frequency %>
+</p>
+
+<%= link_to 'Edit', edit_budget_period_path(@budget_period) %> |
+<%= link_to 'Back', budget_periods_path %>

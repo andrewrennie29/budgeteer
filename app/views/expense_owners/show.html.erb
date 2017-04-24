@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @expense_owner.name %>
+</p>
+
+<p>
+  <strong>Allocation:</strong>
+  <%= @expense_owner.allocation %>
+</p>
+
+<%= link_to 'Edit', edit_expense_owner_path(@expense_owner) %> |
+<%= link_to 'Back', expense_owners_path %>

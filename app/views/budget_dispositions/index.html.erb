@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Budget Dispositions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Disposition</th>
+      <th>Multiplier</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @budget_dispositions.each do |budget_disposition| %>
+      <tr>
+        <td><%= budget_disposition.disposition %></td>
+        <td><%= budget_disposition.multiplier %></td>
+        <td><%= link_to 'Show', budget_disposition %></td>
+        <td><%= link_to 'Edit', edit_budget_disposition_path(budget_disposition) %></td>
+        <td><%= link_to 'Destroy', budget_disposition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Budget Disposition', new_budget_disposition_path %>

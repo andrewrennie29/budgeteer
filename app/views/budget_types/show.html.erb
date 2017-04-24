@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Budget type:</strong>
+  <%= @budget_type.budget_type %>
+</p>
+
+<p>
+  <strong>Budget disposition:</strong>
+  <%= @budget_type.budget_disposition.disposition %>
+</p>
+
+<%= link_to 'Edit', edit_budget_type_path(@budget_type) %> |
+<%= link_to 'Back', budget_types_path %>

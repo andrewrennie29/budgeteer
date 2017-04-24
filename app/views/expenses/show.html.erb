@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Expense category:</strong>
+  <%= @expense.expense_category.category %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= number_to_currency(@expense.value, precision: 2, unit: "£") %>
+</p>
+
+<p>
+  <strong>Expense date:</strong>
+  <%= @expense.expense_date %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @expense.comment %>
+</p>
+
+<p>
+  <strong>Budget:</strong>
+  <%= @expense.budget.name %>
+</p>
+
+<p>
+  <strong>Expense owner:</strong>
+  <%= @expense.expense_owner.name %>
+</p>
+
+<%= link_to 'Edit', edit_expense_path(@expense) %> |
+<%= link_to 'Back', expenses_path %>

@@ -1,0 +1,27 @@
+<%= form_for(budget_type) do |f| %>
+  <% if budget_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(budget_type.errors.count, "error") %> prohibited this budget_type from being saved:</h2>
+
+      <ul>
+      <% budget_type.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :budget_type %>
+    <%= f.text_field :budget_type %>
+  </div>
+
+  <div class="field">
+    <%= f.label :budget_disposition_id %>
+    <%= f.collection_select :budget_disposition_id, BudgetDisposition.all, :id, :disposition %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,2 @@
+class ExpenseOwner < ApplicationRecord
+end

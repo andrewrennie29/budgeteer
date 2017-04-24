@@ -1,0 +1,40 @@
+<%= form_for(@budget, html: {:class => 'form-inline'}) do |f| %>
+  <% if @budget.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@budget.errors.count, "error") %> prohibited this budget from being saved:</h2>
+
+      <ul>
+      <% @budget.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <%= f.text_field :name, :html => {:class => 'form-control mb-2 mr-sm-2 mb-sm-0'}, :placeholder => 'Budget Name' %>
+
+  <%= f.collection_select :budget_type_id, BudgetType.all, :id, :budget_type, {}, {:class => 'custom-select mb-2 mr-sm-2 mb-sm-0'} %>
+
+  <%= f.collection_select :budget_period_id, BudgetPeriod.all, :id, :period, {}, {:class => 'custom-select mb-2 mr-sm-2 mb-sm-0'} %>
+
+
+  <div class="field">
+    <%= f.label :rollover %>
+    <%= f.check_box :rollover %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :enddate, :data => {:provide => 'datepicker'}, :placeholder => Date.today, :id => 'budget_datepicker' %>
+  </div>
+
+  <div class = 'input-group mb-2 mr-sm-2 mb-sm-0'>
+    <div class = 'input-group-addon'>£</div>
+    <%= f.text_field :value, :html => {:class => 'form-control mb-2 mr-sm-2 mb-sm-0'}, :placeholder => '500.00'  %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

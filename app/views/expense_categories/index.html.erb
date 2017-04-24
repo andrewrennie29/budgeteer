@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Expense Categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Icon</th>
+      <th>Category</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @expense_categories.each do |expense_category| %>
+      <tr>
+        <td><%= ('<i class="fa fa-' + expense_category.icon.to_s + ' fa-2x"></i>').html_safe %> </td>
+        <td><%= expense_category.category %></td>
+        <td><%= link_to 'Show', expense_category %></td>
+        <td><%= link_to 'Edit', edit_expense_category_path(expense_category) %></td>
+        <td><%= link_to 'Destroy', expense_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Expense Category', new_expense_category_path %>

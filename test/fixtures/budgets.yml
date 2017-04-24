@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  rollover: false
+  enddate: 2017-04-11
+  value: 9.99
+  budget_period: one
+  budget_type: one
+
+two:
+  name: MyString
+  rollover: false
+  enddate: 2017-04-11
+  value: 9.99
+  budget_period: two
+  budget_type: two

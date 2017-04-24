@@ -1,0 +1,2 @@
+class BudgetDisposition < ApplicationRecord
+end
