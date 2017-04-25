@@ -2,13 +2,13 @@
   <div class="modal-content">
 
     <div class="modal-header">
-        <h5 class="modal-title">Log New <%= ExpenseCategory.find_by_id(params[:category]).category %> Expense</h5>
+        <h5 class="modal-title">Log New Expense</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
 
-    <%= form_for(expense) do |f| %>
+    <%= form_for expense, remote: true do |f| %>
       <div class="modal-body">
       <% if expense.errors.any? %>
         <div id="error_explanation">

@@ -1,0 +1,12 @@
+<% @expenses.each do |expense| %>
+  <tr>
+    <th scope="row"><%= link_to expense.budget.name, expense.budget %></th>
+    <td><%= expense.expense_category.category %></td>
+    <td><%= expense.expense_date %></td>
+    <td><%= expense.comment %></td>
+    <td><%= number_to_currency(expense.value, precision: 2, unit: "£") %></td>
+    <td><%= expense.expense_owner.name %></td>
+    <td><%= link_to 'Edit', edit_expense_path(expense), remote: true %></td>
+    <td><%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>

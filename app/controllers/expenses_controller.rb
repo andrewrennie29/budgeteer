@@ -5,6 +5,7 @@ class ExpensesController < ApplicationController
   # GET /expenses.json
   def index
     @expenses = Expense.in_period(Budget.new.start_date..Budget.new.end_date).order(expense_date: :desc)
+    @expenses_chart = Expense.joins(:expense_category).group(:category).order('sum(value) desc').sum(:value)
   end
 
   # GET /expenses/1
@@ -28,6 +29,9 @@ class ExpensesController < ApplicationController
 
     respond_to do |format|
       if @expense.save
+        @expenses = Expense.in_period(Budget.new.start_date..Budget.new.end_date).order(expense_date: :desc)
+        @expenses_chart = Expense.joins(:expense_category).group(:category).order('sum(value) desc').sum(:value)
+        format.js
         format.html { redirect_to @expense, notice: 'Expense was successfully created.' }
         format.json { render :show, status: :created, location: @expense }
       else
@@ -42,6 +46,9 @@ class ExpensesController < ApplicationController
   def update
     respond_to do |format|
       if @expense.update(expense_params)
+        @expenses = Expense.in_period(Budget.new.start_date..Budget.new.end_date).order(expense_date: :desc)
+        @expenses_chart = Expense.joins(:expense_category).group(:category).order('sum(value) desc').sum(:value)
+        format.js
         format.html { redirect_to @expense, notice: 'Expense was successfully updated.' }
         format.json { render :show, status: :ok, location: @expense }
       else
