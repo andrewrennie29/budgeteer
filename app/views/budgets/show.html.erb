@@ -2,7 +2,8 @@
 
 <div class="card">
   <div class="card-block">
-    <h4 class="card-title"><%= @budget.name %>  |  Monthly Budget <%= number_to_currency(@budget.monthly_value, precision: 2, unit: "£") %>   |   Remaining <%= number_to_currency(@budget.monthly_value - @expenses.sum(:value), precision: 2, unit: "£") %></h4>
+    <h4 class="card-title"><%= @budget.name %>  |  Monthly Budget <%= number_to_currency(@budget.monthly_value, precision: 2, unit: "£") %></h4>
+    <h5 class="card-subtitle mb-2">Remaining <%= number_to_currency(@budget.remaining, precision: 2, unit: "£") %>   |   <%= number_to_currency(@budget.daily_remaining * 7, precision: 2, unit: "£") %> per Week</h5>
     <h6 class="card-subtitle mb-2 text-muted"><%= @budget.budget_type.budget_type %>  |  <%= @budget.budget_period.period %>  |  <%= number_to_currency(@budget.value, precision: 2, unit: "£") %></h6>
     <p class="card-text">
     <table class="table table-striped">

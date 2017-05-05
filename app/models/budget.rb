@@ -22,6 +22,10 @@ class Budget < ApplicationRecord
   	(self.end_date - self.start_date).to_i
   end
 
+  def days_remaining
+    (self.end_date - Date.today).to_i + 1
+  end
+
   def daily_value
   	self.value / (self.budget_period.days * self.budget_period.frequency)
   end
@@ -44,6 +48,10 @@ class Budget < ApplicationRecord
 
   def remaining
   	self.monthly_value.to_f - self.expenses.in_period(self.start_date..self.end_date).sum(:value).to_f
+  end
+
+  def daily_remaining
+    self.remaining / self.days_remaining
   end
 
   def self.general_value
