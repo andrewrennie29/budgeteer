@@ -37,7 +37,7 @@
 
         <div class = "col-md-4">
           <div class="form-group">
-            <%= f.text_field :expense_date, :data => {:provide => 'datepicker'}, :placeholder => Date.today, :id => 'expense_datepicker', :class => 'form-control' %>
+            <%= f.text_field :expense_date, :data => {:provide => 'datepicker'}, :placeholder => Date.today, :id => 'expense_datepicker', :value => Date.today, :class => 'form-control' %>
           </div>
         </div>
       </div>
@@ -57,9 +57,9 @@
       </div>
 
 
-<div class="form-group">
-            <%= f.text_field :comment, :html => {:class => 'form-control mb-2 mr-sm-2 mb-sm-0'}, :placeholder => 'Expense Comment', :class => 'form-control' %>
-          </div>
+      <div class="form-group">
+        <%= f.text_field :comment, :html => {:class => 'form-control mb-2 mr-sm-2 mb-sm-0'}, :placeholder => 'Expense Comment', :class => 'form-control' %>
+      </div>
 
       <div class="modal-footer">
       <div class="actions">
