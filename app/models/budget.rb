@@ -15,7 +15,7 @@ class Budget < ApplicationRecord
   end
 
   def end_date
-  	start_date.next_month.yesterday
+  	start_date.next_month
   end
 
   def days_in_month
@@ -23,7 +23,7 @@ class Budget < ApplicationRecord
   end
 
   def days_remaining
-    (self.end_date - Date.today).to_i + 1
+    (self.end_date - Date.today).to_i
   end
 
   def daily_value
