@@ -9,7 +9,7 @@
 			</span> <%= @expense_category.category %>  |  Monthly Spend <%= number_to_currency(@expenses.sum(:value), precision: 2, unit: "£") %>
     </h5>
     <h6 class="card-subtitle mb-2 text-muted">
-      <%= @expenses.count %> Transactions    |   Average Value <%= number_to_currency(@expenses.average(:value), precision: 2, unit: "£") %>
+      <%= pluralize(@expenses.count, 'Transaction') %>    |   Average Value <%= number_to_currency(@expenses.average(:value), precision: 2, unit: "£") %>
     </h6>
   </div>
   <div class="card-block">
