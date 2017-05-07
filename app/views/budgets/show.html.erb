@@ -11,7 +11,7 @@
   </div>
   <div class="card-block">
     <h5 class="card-title">
-      Remaining <%= number_to_currency(@budget.remaining, precision: 2, unit: "£") %>   |   <%= number_to_currency(@budget.daily_remaining * 7, precision: 2, unit: "£") %> per Week
+      Month to Date Spend <%= number_to_currency(@budget.expenses.in_period(@budget.start_date..@budget.end_date).sum(:value), precision: 2, unit: "£") %>    |   Remaining <%= number_to_currency(@budget.remaining, precision: 2, unit: "£") %>   |   <%= number_to_currency(@budget.daily_remaining * 7, precision: 2, unit: "£") %> per Week
     </h5>
     
     <p class="card-text">
