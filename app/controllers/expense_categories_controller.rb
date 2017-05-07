@@ -10,6 +10,7 @@ class ExpenseCategoriesController < ApplicationController
   # GET /expense_categories/1
   # GET /expense_categories/1.json
   def show
+    @expenses = @expense_category.expenses.in_period('2017-04-28'..'2017-05-27')
   end
 
   # GET /expense_categories/new

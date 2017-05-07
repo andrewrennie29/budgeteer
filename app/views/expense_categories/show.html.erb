@@ -1,15 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @expense_category.category %>
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title">
+      <span class="fa-stack fa-1x">
+				<i class="fa fa-square-o fa-stack-2x"></i>
+				<%= ('<i class="fa fa-' + @expense_category.icon.to_s + ' fa-stack-1x"></i>').html_safe %>
+			</span> <%= @expense_category.category %>  |  Monthly Spend <%= number_to_currency(@expenses.sum(:value), precision: 2, unit: "£") %>
+    </h5>
+    <h6 class="card-subtitle mb-2 text-muted">
+      
+    </h6>
+  </div>
+  <div class="card-block">
+    <p class="card-text">
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Budget</th>
+      <th>Expense Date</th>
+      <th>Owner</th>
+      <th>Comment</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @expenses.each do |expense| %>
+      <tr>
+        <th><%= link_to expense.budget.name, expense.budget %></th>
+        <td><%= expense.expense_date %></td>
+        <td><%= expense.expense_owner.name %></td>
+        <td><%= expense.comment %></td>
+        <td><%= number_to_currency(expense.value, precision: 2, unit: "£") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 </p>
-
-<p>
-  <strong>Icon:</strong>
-  <%= @expense_category.icon %>
-</p>
-
-
-<%= link_to 'Edit', edit_expense_category_path(@expense_category) %> |
-<%= link_to 'Back', expense_categories_path %>
+    <%= link_to 'Edit', edit_expense_category_path(@expense_category) %> |
+	<%= link_to 'Back', expense_categories_path %>
+  </div>
+</div>
