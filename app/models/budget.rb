@@ -51,7 +51,7 @@ class Budget < ApplicationRecord
   end
 
   def weekly_remaining
-    self.weekly_value.to_f - self.expenses.in_period(Date.today.beginning_of_week.yesterday..Date.today.end_of_week.yesterday).sum(:value).to_f
+    self.weekly_value.to_f - self.expenses.in_period(Date.today.beginning_of_week(:sunday)..Date.today.end_of_week(:sunday)).sum(:value).to_f
   end
 
   def daily_remaining
