@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :reports
   resources :expenses
   resources :budgets
   scope :admin do

@@ -7,13 +7,14 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <div class = "container">
+  
   <body>
   	<%= render 'layouts/navbar' %>
+    <div class = "container">
     <%= yield %>
-    
+    </div>  
     <div id="expense-modal" class="modal fade"></div>
   </body>
-  </div>
+  
   
 </html>
