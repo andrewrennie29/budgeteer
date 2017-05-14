@@ -3,3 +3,12 @@
 
 
 <h3>Accordion to group by week</h3>
+
+<% @budgets.each_slice(2) do |budgets| %>
+  <div class="row">
+    <% budgets.each do |budget| %>
+      <%= render 'reports/card',  budget: budget %>
+    <% end %>
+  </div>
+  <p>
+<% end %>
