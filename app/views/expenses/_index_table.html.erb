@@ -1,6 +1,6 @@
 <% @expenses.each do |expense| %>
   <tr>
-    <th scope="row"><%= link_to expense.budget.name, expense.budget %></th>
+    <th scope="row"><%= link_to expense.budget.name, expense.budget, :remote => true %></th>
     <td><%= link_to expense.expense_category.category, expense.expense_category %></td>
     <td><%= expense.expense_date %></td>
     <td><%= expense.comment %></td>

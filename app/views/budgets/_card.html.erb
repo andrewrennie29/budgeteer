@@ -1,0 +1,52 @@
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">
+            <%= @budget.name %>  |  Monthly Budget <%= number_to_currency(@budget.monthly_value, precision: 2, unit: "£") %>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </h5>
+          <h6 class="card-subtitle mb-2 text-muted">
+            <%= @budget.budget_type.budget_type %>  |  <%= @budget.budget_period.period %>  |  <%= number_to_currency(@budget.value, precision: 2, unit: "£") %>
+          </h6>
+        </div>
+        <div class="card-block">
+          <h5 class="card-title">
+            Month to Date Spend <%= number_to_currency(@budget.expenses.in_period(@budget.start_date..@budget.end_date).sum(:value), precision: 2, unit: "£") %>    |   Remaining <%= number_to_currency(@budget.remaining, precision: 2, unit: "£") %>   |   <%= number_to_currency(@budget.daily_remaining * 7, precision: 2, unit: "£") %> per Week
+          </h5>
+          
+          <p class="card-text">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Expense Date</th>
+                  <th>Category</th>
+                  <th>Comment</th>
+                  <th>Value</th>
+                  <th>Burndown</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @expenses.each do |expense| %>
+                  <tr>
+                    <td><%= expense.expense_date %></th>
+                    <td><%= link_to expense.expense_category.category, expense.expense_category %></td>
+                    <td><%= expense.comment %></td>
+                    <td><%= number_to_currency(expense.value, precision: 2, unit: "£") %></td>
+                    <td><% @burndown = @burndown - expense.value %>
+                    <%= number_to_currency(@burndown, precision: 2, unit: "£") %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+          </table>
+        </p>
+          <%= link_to 'Edit', edit_budget_path(@budget) %>  |  
+          <%= link_to 'Back', budgets_path %>
+        </div>
+      </div>
+
+    </div>
+  </div>

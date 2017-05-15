@@ -1,10 +1,10 @@
 <div class="col-sm-6">
 	<div class="card">
 	  <div class="card-block">
-	    <h3 class="card-title"><%= budget.name %></h3>
+	    <h3 class="card-title"><%= link_to budget.name, budget, remote: true %></h3>
 	    <h5 class="card-title">Month <%= number_to_currency(budget.expenses.in_period(budget.start_date..budget.end_date).sum(:value), precision: 2, unit: "£") %> / <%= number_to_currency(budget.monthly_value, precision: 2, unit: "£") %></h5>
 	    <h5 class="card-title">Week <%= number_to_currency(budget.expenses.in_period(Date.today.beginning_of_week(:sunday)..Date.today.end_of_week(:sunday)).sum(:value), precision: 2, unit: "£") %> / <%= number_to_currency(budget.daily_remaining * 7, precision: 2, unit: "£") %></h5>
-	    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+	    
 	    <a href="#" class="btn btn-primary">Go somewhere</a>
 	  </div>
 	</div>

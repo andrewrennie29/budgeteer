@@ -3,6 +3,7 @@ class Budget < ApplicationRecord
   belongs_to :budget_type
   has_many :expenses
   has_one :budget_disposition, through: :budget_type
+  has_many :expense_categories, through: :expenses
 
   attr_accessor :burndown_running_total
 
@@ -15,15 +16,15 @@ class Budget < ApplicationRecord
   end
 
   def end_date
-  	start_date.next_month
+  	start_date.next_month.yesterday
   end
 
   def days_in_month
-  	(self.end_date - self.start_date).to_i
+  	(self.end_date.tomorrow - self.start_date).to_i
   end
 
   def days_remaining
-    (self.end_date - Date.today).to_i
+    (self.end_date.tomorrow - Date.today).to_i
   end
 
   def daily_value

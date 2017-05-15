@@ -5,7 +5,7 @@ class ReportsController < ApplicationController
   # GET /reports.json
   def index
     @reports = Report.all
-    @budgets = Budget.joins(:budget_type).where(budget_types: { budget_type: 'Variable Fixed' })
+    @budgets = Budget.joins(:budget_type).where(budget_types: { budget_type: 'Variable Fixed' }).order(value: :desc)
   end
 
   # GET /reports/1
