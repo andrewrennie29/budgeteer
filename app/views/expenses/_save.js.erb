@@ -6,5 +6,6 @@ $("ul.errors").html("")
 <% else %>
   $(".expenses-index").html("<%= escape_javascript(render 'index_table') %>")
   $(".expenses-chart").html("<%= escape_javascript(render 'index_chart') %>")
+  $(".reports-card-" @expense.budget.name).html("<%= escape_javascript(render 'reports/card') %>")
   $("#expense-modal").modal("hide")
 <% end %>
