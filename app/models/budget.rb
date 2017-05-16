@@ -19,6 +19,22 @@ class Budget < ApplicationRecord
   	start_date.next_month.yesterday
   end
 
+  def budget_period_start_date
+    if self.budget_period.days > (self.end_date - self.start_date + 1)
+      (self.end_date - self.budget_period.days).strftime('%Y-%m-28').to_date
+    else
+      (Date.today.end_of_week(:sunday) - self.budget_period.days * self.budget_period.frequency + 1).to_date
+    end
+  end
+
+  def budget_period_end_date
+    if self.budget_period.days > (self.end_date - self.start_date + 1)
+      self.end_date
+    else
+      Date.today.end_of_week(:sunday)
+    end
+  end  
+
   def days_in_month
   	(self.end_date.tomorrow - self.start_date).to_i
   end
@@ -57,6 +73,10 @@ class Budget < ApplicationRecord
 
   def daily_remaining
     self.remaining / self.days_remaining
+  end
+
+  def expenses_in_budget_period
+    self.expenses.in_period(self.budget_period_start_date..self.budget_period_start_date)
   end
 
   def self.general_value
