@@ -14,7 +14,7 @@ class BudgetsController < ApplicationController
   # GET /budgets/1.json
   def show
     @expenses = @budget.expenses.in_period(@budget.start_date..@budget.end_date).order(expense_date: :desc)
-    @burndown = @budget.monthly_value
+    @burndown = @budget.daily_value * (@budget.end_date - @budget.start_date + 1)
   end
 
   # GET /budgets/new

@@ -32,7 +32,7 @@
               <tbody>
                 <% @expenses.each do |expense| %>
                   <tr>
-                    <td class="col col-sm-2"><%= expense.expense_date %></td>
+                    <td class="col col-sm-2"><%= expense.expense_date.strftime('%a %d %h') %></td>
                     <td class="col col-sm-3"><%= link_to expense.expense_category.category, expense.expense_category %></td>
                     <td class="col col-sm-3"><%= expense.comment %></td>
                     <td class="col col-sm-2"><%= number_to_currency(expense.value, precision: 2, unit: "£") %></td>
@@ -43,8 +43,6 @@
               </tbody>
           </table>
         </p>
-          <%= link_to 'Edit', edit_budget_path(@budget) %>  |  
-          <%= link_to 'Back', budgets_path %>
         </div>
       </div>
 
