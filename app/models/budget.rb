@@ -79,6 +79,10 @@ class Budget < ApplicationRecord
     self.expenses.in_period(self.budget_period_start_date..self.budget_period_start_date)
   end
 
+  def remaining_in_budget_period
+    self.value - self.expenses_in_budget_period.sum(:value)
+  end
+
   def self.general_value
   	general_budget = self.find_by_name("General")
   	general_budget.update(:value => 0)
