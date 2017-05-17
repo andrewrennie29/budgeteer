@@ -31,6 +31,7 @@ class ExpensesController < ApplicationController
       if @expense.save
         @expenses = Expense.in_period(Budget.new.start_date..Budget.new.end_date).order(expense_date: :desc)
         @expenses_chart = Expense.joins(:expense_category).group(:category).order('sum(value) desc').sum(:value)
+        @budget = Budget.find_by_name(@expense.budget.name)
         format.js
         format.html { redirect_to @expense, notice: 'Expense was successfully created.' }
         format.json { render :show, status: :created, location: @expense }
@@ -48,6 +49,7 @@ class ExpensesController < ApplicationController
       if @expense.update(expense_params)
         @expenses = Expense.in_period(Budget.new.start_date..Budget.new.end_date).order(expense_date: :desc)
         @expenses_chart = Expense.joins(:expense_category).group(:category).order('sum(value) desc').sum(:value)
+        @budget = Budget.find_by_name(@expense.budget.name)
         format.js
         format.html { redirect_to @expense, notice: 'Expense was successfully updated.' }
         format.json { render :show, status: :ok, location: @expense }

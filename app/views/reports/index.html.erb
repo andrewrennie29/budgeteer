@@ -7,7 +7,9 @@
 <% @budgets.each_slice(2) do |budgets| %>
   <div class="row">
     <% budgets.each do |budget| %>
+     		<div class = "col-sm-6 report-card-<%= budget.id %>">
      		<%= render 'reports/card',  budget: budget %>
+     		</div>
     <% end %>
   </div>
   <p>
