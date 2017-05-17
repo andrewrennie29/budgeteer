@@ -76,7 +76,7 @@ class Budget < ApplicationRecord
   end
 
   def expenses_in_budget_period
-    self.expenses.in_period(self.budget_period_start_date..self.budget_period_start_date)
+    self.expenses.in_period(self.budget_period_start_date..self.budget_period_end_date)
   end
 
   def remaining_in_budget_period
