@@ -80,7 +80,7 @@ class Budget < ApplicationRecord
   end
 
   def days_remaining_in_budget_period
-    (self.budget_period_end_date - Date.today).to_i
+    (self.budget_period_end_date - Date.yesterday).to_i
   end
 
   def remaining_in_budget_period
