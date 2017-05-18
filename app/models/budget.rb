@@ -84,7 +84,7 @@ class Budget < ApplicationRecord
   end
 
   def remaining_in_budget_period
-    self.daily_remaining * self.days_remaining_in_budget_period
+    self.daily_remaining * self.budget_period.days * self.budget_period.frequency
   end
 
   def self.general_value
