@@ -79,8 +79,12 @@ class Budget < ApplicationRecord
     self.expenses.in_period(self.budget_period_start_date..self.budget_period_end_date)
   end
 
+  def days_remaining_in_budget_period
+    (self.budget_period_end_date - Date.today).to_i
+  end
+
   def remaining_in_budget_period
-    self.value - self.expenses_in_budget_period.sum(:value)
+    self.daily_remaining * self.days_remaining_in_budget_period
   end
 
   def self.general_value
