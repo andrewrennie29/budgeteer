@@ -5,7 +5,7 @@ class ExpensesController < ApplicationController
   # GET /expenses.json
   def index
     @expenses = Expense.in_period(Budget.new.start_date..Budget.new.end_date).order(expense_date: :desc)
-    @expenses_chart = Expense.joins(:expense_category).group(:category).order('sum(value) desc').sum(:value)
+    @expenses_chart = Expense.in_period(Budget.new.start_date..Budget.new.end_date).joins(:expense_category).group(:category).order('sum(value) desc').sum(:value)
   end
 
   # GET /expenses/1
@@ -16,6 +16,7 @@ class ExpensesController < ApplicationController
   # GET /expenses/new
   def new
     @expense = Expense.new
+    @budgets = Budget.joins(:budget_type).left_outer_joins(:expenses).where('budget_types.budget_type = ?', 'Variable Fixed').group(:name).order('count(*) desc, name asc')
   end
 
   # GET /expenses/1/edit

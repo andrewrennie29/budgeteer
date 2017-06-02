@@ -9,4 +9,9 @@ class BudgetPeriod < ApplicationRecord
 		BudgetPeriod.find_by_period("Annual").update(:days => year_days)
 
 	end
+
+	def budget_period_days
+		self.days * self.frequency
+	end
+
 end

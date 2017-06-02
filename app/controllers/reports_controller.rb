@@ -5,8 +5,10 @@ class ReportsController < ApplicationController
   # GET /reports.json
   def index
     BudgetPeriod.set_period_values
-    @reports = Report.all
+    Budget.general_value
     @budgets = Budget.joins(:budget_type).where(budget_types: { budget_type: 'Variable Fixed' }).order(value: :desc)
+    @daily_budget = Budget.daily_variable_total
+    @expenses = Expense.in_period(Budget.new.start_date..Budget.new.end_date).joins(:budget_type).where('budget_types.budget_type = ?', 'Variable Fixed')
   end
 
   # GET /reports/1

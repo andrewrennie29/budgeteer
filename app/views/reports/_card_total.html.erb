@@ -1,0 +1,9 @@
+<div class="card">
+  <div class="card-block">
+    <h3 class="card-title">Total Spend</h3>
+    <h5 class="card-title">Month <%= number_to_currency(@expenses.sum(:value), precision: 2, unit: "£") %> / <%= number_to_currency(@daily_budget * Budget.new.days_in_month, precision: 2, unit: "£") %></h5>
+    <h5 class="card-title">Week <%= number_to_currency(@expenses.in_period((Date.today.end_of_week(:sunday) - 6).to_date..Date.today.end_of_week(:sunday)).sum(:value), precision: 2, unit: "£") %> / <%= number_to_currency(@daily_budget * 7, precision: 2, unit: "£") %></h5>
+    
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>

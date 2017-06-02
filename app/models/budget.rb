@@ -6,6 +6,7 @@ class Budget < ApplicationRecord
   has_many :expense_categories, through: :expenses
 
   attr_accessor :burndown_running_total
+  attr_accessor :variable_running_total
 
   def start_date
   	if Date.today.day < 28
@@ -44,7 +45,7 @@ class Budget < ApplicationRecord
   end
 
   def daily_value
-  	self.value / (self.budget_period.days * self.budget_period.frequency)
+  	self.value / self.budget_period.budget_period_days
   end
 
   def weekly_value
@@ -84,7 +85,7 @@ class Budget < ApplicationRecord
   end
 
   def remaining_in_budget_period
-    self.daily_remaining * self.budget_period.days * self.budget_period.frequency
+    self.daily_remaining * self.budget_period.budget_period_days
   end
 
   def self.general_value
@@ -95,6 +96,17 @@ class Budget < ApplicationRecord
   	gen_val = b[b.count - 1]
   	
   	general_budget.update(:value => gen_val)
+  end
+
+  def self.daily_variable_total
+    total = 0.0
+    budgets = self.joins(:budget_type).joins(:budget_period).where(budget_types: { budget_type: 'Variable Fixed' })
+    budgets.each do |b|
+      total += b.value / b.budget_period.budget_period_days
+    end
+
+    return total
+
   end
 
 end
