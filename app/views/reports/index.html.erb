@@ -4,7 +4,12 @@
 
 <h3>Accordion to group by week</h3>
 
-<%= render 'reports/card_total',  locals: { budget: @daily_budget, expenses: @variable_expenses } %> <p>
+<div class="row">
+	<div class = "col-sm-12 report-card-total">
+		<%= render 'reports/card_total',  locals: { budget: @daily_budget, expenses: @variable_expenses } %>
+	</div>
+</div>
+<p>
 
 <% @budgets.each_slice(2) do |budgets| %>
   <div class="row">

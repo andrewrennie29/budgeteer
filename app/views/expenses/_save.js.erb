@@ -7,6 +7,7 @@ $("ul.errors").html("")
   $("#expense-modal").modal("hide")
   $(".expenses-index").html("<%= escape_javascript(render 'index_table') %>")
   $(".expenses-chart").html("<%= escape_javascript(render 'index_chart') %>")
+  $(".report-card-total").html("<%= escape_javascript(render 'reports/card_total',  locals: { budget: @daily_budget, expenses: @variable_expenses }) %>")
   $(".report-card-<%= @expense.budget.id %>").html("<%= escape_javascript(render 'reports/card', budget: @budget) %>")
   $(<% puts @expense.budget.name %>)
 <% end %>
